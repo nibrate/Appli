@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Prédiction de Nombres | Système d'Apprentissage Progressif</title>
+    
+    <!-- SEO et Meta Tags -->
+    <meta name="description" content="Système d'intelligence artificielle pour analyser et prédire des séquences de nombres. Apprentissage progressif et analyse de patterns avancée.">
+    <meta name="keywords" content="IA, prédiction, nombres, intelligence artificielle, machine learning, analyse de données">
+    <meta name="author" content="IA Prediction App">
+    
+    <!-- Open Graph pour réseaux sociaux -->
+    <meta property="og:title" content="IA Prédiction de Nombres">
+    <meta property="og:description" content="Système d'IA pour analyser et prédire des séquences numériques">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630/667eea/white?text=IA+Prediction">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="icons/icon-192.png" type="image/png">
+
+    <link rel="stylesheet" href="css/style.css">
+    
+   
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🧠 IA Prédiction de Nombres</h1>
+            <p>Système d'apprentissage progressif pour séquences de 5 nombres (1-90)</p>
+        </header>
+
+        <div class="card">
+            <h2>📊 Tableau de Bord</h2>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-value" id="totalPredictions">0</span>
+                    <span class="stat-label">Prédictions</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="accuracy">0%</span>
+                    <span class="stat-label">Précision</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="confidence">0%</span>
+                    <span class="stat-label">Confiance</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value" id="dataPoints">0</span>
+                    <span class="stat-label">Données</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Prédiction Actuelle</h2>
+            <div class="prediction">
+                <div class="numbers-display" id="currentPrediction">
+                    <div class="number-ball">?</div>
+                    <div class="number-ball">?</div>
+                    <div class="number-ball">?</div>
+                    <div class="number-ball">?</div>
+                    <div class="number-ball">?</div>
+                </div>
+                <div class="analysis" id="predictionAnalysis">
+                    <strong>📈 Analyse :</strong> Générez une prédiction pour voir l'analyse détaillée.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📝 Gestion des Données</h2>
+            <div class="input-section">
+                <div class="input-group">
+                    <label for="historicalData">📚 Données Historiques</label>
+                    <textarea id="historicalData" placeholder="Format: une séquence par ligne&#10;Exemple:&#10;12,34,56,78,90&#10;5,15,25,35,45&#10;1,23,45,67,89" rows="6"></textarea>
+                    <button onclick="loadHistoricalData()" class="btn-success">
+                        📚 Charger les Données
+                    </button>
+                    <button onclick="generateSampleData()" class="btn-warning">
+                        🎲 Générer Données Test
+                    </button>
+                </div>
+                
+                <div class="input-group">
+                    <label for="newResult">✅ Nouveau Résultat</label>
+                    <input type="text" id="newResult" placeholder="Ex: 12,34,56,78,90">
+                    <button onclick="addNewResult()" class="btn-success">
+                        ✅ Ajouter Résultat
+                    </button>
+                    <button onclick="makePrediction()" class="btn-primary">
+                        🔮 Nouvelle Prédiction
+                    </button>
+                    <button onclick="resetModel()" class="btn-danger">
+                        🔄 Réinitialiser
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>📈 Historique & Performance</h2>
+            <div class="history" id="historyContainer">
+                <div style="text-align: center; color: var(--text-secondary); padding: 20px;">
+                    <p>📭 Aucun historique disponible</p>
+                    <p style="font-size: 0.9em; margin-top: 5px;">Ajoutez des données pour commencer l'analyse</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>🧮 Analyse Avancée des Patterns</h2>
+            <div id="patternAnalysis">
+                <div style="text-align: center; color: var(--text-secondary); padding: 20px;">
+                    <p>🔍 Analyse en attente</p>
+                    <p style="font-size: 0.9em; margin-top: 5px;">L'IA analysera les patterns une fois que vous aurez fourni des données</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js" defer></script>
+    </body>
+    </html>
