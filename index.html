@@ -108,7 +108,10 @@
         </div>
 
         <div class="card">
-            <h2>📈 Historique & Performance</h2>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2>📈 Historique & Performance</h2>
+                <button onclick="showHistoryModal()" class="btn-primary" style="padding: 8px 15px; font-size: 12px;">Afficher tout l'historique</button>
+            </div>
             <div class="history" id="historyContainer">
                 <div style="text-align: center; color: var(--text-secondary); padding: 20px;">
                     <p>📭 Aucun historique disponible</p>
@@ -129,5 +132,13 @@
     </div>
 
     <script src="js/app.js" defer></script>
+
+    <div id="historyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeHistoryModal()">&times;</span>
+            <h2>Historique Complet des Données</h2>
+            <div id="fullHistoryContainer"></div>
+        </div>
+    </div>
     </body>
     </html>

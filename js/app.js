@@ -1023,6 +1023,30 @@ class AdvancedNumberPredictionAI {
             }
         }
 
+        function showHistoryModal() {
+            const modal = document.getElementById('historyModal');
+            const container = document.getElementById('fullHistoryContainer');
+            const history = ai.history;
+
+            if (history.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Aucune donnée historique à afficher.</p>';
+            } else {
+                let html = '<table><thead><tr><th>Séquence #</th><th>Nombres</th></tr></thead><tbody>';
+                history.forEach((seq, index) => {
+                    html += `<tr><td>${index + 1}</td><td>${seq.join(', ')}</td></tr>`;
+                });
+                html += '</tbody></table>';
+                container.innerHTML = html;
+            }
+
+            modal.style.display = 'block';
+        }
+
+        function closeHistoryModal() {
+            const modal = document.getElementById('historyModal');
+            modal.style.display = 'none';
+        }
+
         // Fonctions utilitaires pour l'interface
         function exportData() {
             try {
