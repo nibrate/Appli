@@ -1,6 +1,4 @@
-
-
-        :root {
+:root {
             --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             --success-gradient: linear-gradient(135deg, #10ac84, #00d2d3);
@@ -381,3 +379,33 @@
         .card:nth-child(4) { animation-delay: 0.4s; }
         .card:nth-child(5) { animation-delay: 0.5s; }
     
+.bar-chart-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 200px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+}
+
+.bar-chart-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50px;
+}
+
+.bar {
+    width: 30px;
+    background: var(--primary-gradient);
+    border-radius: 5px 5px 0 0;
+    transition: height 0.5s ease-in-out;
+}
+
+.bar-label {
+    margin-top: 10px;
+    font-weight: bold;
+    color: var(--text-primary);
+}

@@ -499,7 +499,7 @@ class AdvancedNumberPredictionAI {
                     confidence: Math.round(this.confidenceScore),
                     dataPoints: this.history.length,
                     patterns: Object.keys(this.patterns.gaps).length,
-                    topNumbers: this.getTopNumbers(5),
+                    topNumbers: this.getTopNumbers(),
                     recentTrend: this.getRecentTrend()
                 };
             }
@@ -567,16 +567,19 @@ class AdvancedNumberPredictionAI {
                 analysis += `
                     <div style="margin-bottom: 20px;">
                         <h4 style="color: #495057; margin-bottom: 10px;">🔥 Nombres les Plus Fréquents</h4>
-                        <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #dee2e6;">
+                        <div class="bar-chart-container">
                 `;
                 
-                stats.topNumbers.forEach(item => {
-                    const percentage = ((item.frequency / this.history.length) * 100).toFixed(1);
+                const topNumbers = this.getTopNumbers(10);
+                const maxFrequency = topNumbers.length > 0 ? topNumbers[0].frequency : 0;
+
+                topNumbers.forEach(item => {
+                    const barHeight = maxFrequency > 0 ? (item.frequency / maxFrequency) * 100 : 0;
                     analysis += `
-                        <span style="display: inline-block; background: linear-gradient(135deg, #667eea, #764ba2); 
-                              color: white; padding: 5px 12px; border-radius: 20px; margin: 3px; font-size: 0.9em;">
-                            ${item.number} <small>(${item.frequency}× - ${percentage}%)</small>
-                        </span>
+                        <div class="bar-chart-item">
+                            <div class="bar" style="height: ${barHeight}%;" title="Fréquence: ${item.frequency}"></div>
+                            <div class="bar-label">${item.number}</div>
+                        </div>
                     `;
                 });
                 
@@ -1118,30 +1121,7 @@ Généré par IA Prédiction App`;
                 }, 1000);
             }
             
-            // Ajouter des boutons supplémentaires
-            addExtraButtons();
         });
-
-        // Ajouter des boutons supplémentaires à l'interface
-        function addExtraButtons() {
-            const buttonContainer = document.querySelector('.input-group:last-child');
-            
-            // Bouton d'export
-            const exportBtn = document.createElement('button');
-            exportBtn.innerHTML = '📁 Exporter Données';
-            exportBtn.onclick = exportData;
-            exportBtn.className = 'btn-secondary';
-            exportBtn.style.background = 'linear-gradient(135deg, #6c757d, #495057)';
-            buttonContainer.appendChild(exportBtn);
-            
-            // Bouton de partage
-            const shareBtn = document.createElement('button');
-            shareBtn.innerHTML = '🔗 Partager Résultats';
-            shareBtn.onclick = shareResults;
-            shareBtn.className = 'btn-secondary';
-            shareBtn.style.background = 'linear-gradient(135deg, #17a2b8, #138496)';
-            buttonContainer.appendChild(shareBtn);
-        }
 
         // Gestion des raccourcis clavier
         document.addEventListener('keydown', (e) => {

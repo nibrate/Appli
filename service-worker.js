@@ -21,13 +21,20 @@ self.addEventListener('install', event => {
 
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        if (response) {
-          return response;
-        }
-        return fetch(event.request);
-      })
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.match(event.request).then(response => {
+        const fetchPromise = fetch(event.request)
+          .then(networkResponse => {
+            cache.put(event.request, networkResponse.clone());
+            return networkResponse;
+          })
+          .catch(error => {
+            // Network request failed, return response if available
+            return response || new Response('Network error occurred', { status: 408, statusText: 'Network Error' });
+          });
+        return response || fetchPromise;
+      });
+    })
   );
 });
 
